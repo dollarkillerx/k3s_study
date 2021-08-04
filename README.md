@@ -156,14 +156,20 @@ kubectl get namespace
 
 # 部署 kubernetes-dashboard
 
+create namespace
+
+``` 
+kubectl create namespace kubernetes-dashboard
+```
+
 dashboard.admin-user.yml
 
 ``` 
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-name: admin-user
-namespace: kubernetes-dashboard
+  name: admin-user
+  namespace: kubernetes-dashboard
 ```
 
 dashboard.admin-user-role.yml
@@ -172,15 +178,15 @@ dashboard.admin-user-role.yml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-name: admin-user
-roleRef:
-apiGroup: rbac.authorization.k8s.io
-kind: ClusterRole
-name: cluster-admin
-subjects:
-- kind: ServiceAccount
   name: admin-user
-  namespace: kubernetes-dashboard
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: admin-user
+    namespace: kubernetes-dashboard
 ```
 
 部署`admin-user` 配置：
