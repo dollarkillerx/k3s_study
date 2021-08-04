@@ -25,6 +25,9 @@ $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 $ vim ~/.bashrc
 export KUBECONFIG=~/.kube/config
 $ source ~/.bashrc
+
+# 配置kubectl命令补全
+source <(kubectl completion bash)
 ```
 
 ### 添加一个子节点

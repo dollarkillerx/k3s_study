@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kubernetes-bootcamp-v1
+  name: kubernetes-bootcamp-v1
+spec:
+  replicas: 2 # 两个副本
+  selector:   # 负载均衡
+    matchLabels:
+      app: kubernetes-bootcamp-v1
+  template:
+    metadata:
+      labels:
+        app: kubernetes-bootcamp-v1
+    spec:
+      containers:
+        - image: jocatalin/kubernetes-bootcamp:v1
+          name: kubernetes-bootcamp-v1

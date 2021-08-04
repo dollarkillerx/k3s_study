@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: "int32bit-test-ingress"
+  labels:
+    app: int32bit-test-ingress
+spec:
+  rules:
+    - host: test.int32bit.me
+      http:
+        paths:
+          - path: /v1
+            pathType: Prefix
+            backend:
+              service:
+                name: "kubernetes-bootcamp-v1"
+                port:
+                  number: 8082
+
