@@ -54,6 +54,7 @@ systemctl status k3s-client.service // 客户端
 # 基础命令
 
 > 获取nodes
+
 ``` 
 wangy@mv-ubuntu-006:~$ kubectl get nodes
 NAME            STATUS   ROLES                  AGE    VERSION
@@ -62,31 +63,49 @@ mv-ubuntu-006   Ready    control-plane,master   164m   v1.21.3+k3s1
 ```
 
 > 获取namespace
+
 ``` 
 kubectl get namespace
 ```
 
 > 创建一个namespace
+
 ``` 
     kubectl create namespace new_namespace
 ```
 
 > 获取所有pod
+
 ``` 
     sudo k3s kubectl get pods --all-namespaces
 ```
 
 > 获取特定namespaces下的pod
+
 ``` 
     kubectl get pods -n kube-system
 ```
 
 > 删除namespaces 并删除 旗下所有pod
+
 ``` 
     kubectl delete ns namespaces_name
 ```
 
+> 查看某个pod状态
+
+``` 
+    kubectl describe pods -n namespace_name  pod_id
+```
+
+> 查看某个pod的log
+
+``` 
+    kubectl logs -n namespace_name  pod_id
+```
+
 > 小试牛刀
+
 ``` 
         kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.16.0/cert-manager.yaml
         
@@ -132,9 +151,10 @@ kubectl get namespace
         kubectl exec -ti $POD_NAME bash
 ```
 
-
 # 部署 kubernetes-dashboard
+
 dashboard.admin-user.yml
+
 ``` 
 apiVersion: v1
 kind: ServiceAccount
@@ -142,6 +162,7 @@ metadata:
 name: admin-user
 namespace: kubernetes-dashboard
 ```
+
 dashboard.admin-user-role.yml
 
 ``` 
