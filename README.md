@@ -37,7 +37,7 @@ source <(kubectl completion bash)
 
 设置K3S_URL参数会使 K3s 以 worker 模式运行。K3s agent 将在所提供的 URL 上向监听的 K3s 服务器注册。K3S_TOKEN使用的值存储在你的服务器节点上的/var/lib/rancher/k3s/server/node-token路径下。
 
-curl -sfL http://rancher-mirror.cnrancher.com/k3s/k3s-install.sh | INSTALL_K3S_MIRROR=cn K3S_URL=https://192.168.88.99:6443 K3S_TOKEN=K10b00d58e153c20552749a3e3d6d03d2ff1d974a1d869d96ccecd85a0e777a93b6::server:1984e3457e28d7e1869537fc1e725dc6 sh -s -agent --docker
+curl -sfL http://rancher-mirror.cnrancher.com/k3s/k3s-install.sh | INSTALL_K3S_MIRROR=cn K3S_URL=https://192.168.88.99:6443 K3S_TOKEN=K10b00d58e153c20552749a3e3d6d03d2ff1d974a1d869d96ccecd85a0e777a93b6::server:1984e3457e28d7e1869537fc1e725dc6 sh -s - agent --docker
 ```
 
 ### 获取服务状态
@@ -216,4 +216,34 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/${VERSIO
 
 ``` 
 sudo k3s kubectl delete ns kubernetes-dashboard
+```
+
+
+### helm 安装
+推荐博客: https://www.cnblogs.com/vpc123/
+
+> https://github.com/helm/helm/releases
+
+导入源
+
+``` 
+导入国外源
+helm repo add stable https://charts.helm.sh/stable
+helm repo update
+
+导入阿里源
+helm repo remove stable
+helm repo add stable https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts
+helm repo update
+helm list
+```
+
+软件搜索
+
+``` 
+helm search hub wordpress
+helm search hub mysql
+helm install happy-panda stable/mariadb
+helm status happy-panda
+helm show values stable/mariadb
 ```

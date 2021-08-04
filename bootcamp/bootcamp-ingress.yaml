@@ -9,7 +9,7 @@ spec:
     - host: test.int32bit.me
       http:
         paths:
-          - path: /v1
+          - path: /
             pathType: Prefix
             backend:
               service:
